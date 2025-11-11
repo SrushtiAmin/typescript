@@ -1,12 +1,23 @@
 {
+  "name": "typescript-project",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "scripts": {
+    "build": "tsc",
+    "start": "node -r module-alias/register dist/index.js",
+    "dev": "ts-node -r module-alias/register src/index.ts"
+  },
+  "dependencies": {
+    "module-alias": "^2.2.3"
+  },
   "devDependencies": {
     "@types/node": "^24.10.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   },
-  "scripts": {
-    "build": "tsc",
-    "start": "node dist/main.js",
-    "dev": "ts-node src/main.ts"
+  "_moduleAliases": {
+    "@components": "dist/components",
+    "@utils": "dist/utils",
+    "@services": "dist/api/services"
   }
 }
