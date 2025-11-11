@@ -8,6 +8,7 @@
     "dev": "ts-node -r module-alias/register src/index.ts"
   },
   "dependencies": {
+    "jsdom": "^27.1.0",
     "module-alias": "^2.2.3"
   },
   "devDependencies": {
