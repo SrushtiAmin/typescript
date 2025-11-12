@@ -42,3 +42,38 @@ console.log(result2); // true
 // document.addEventListener('click', function (event) {
 //     console.log(event.button); 
 // });
+
+const statuses = {
+  OPEN: "open",
+  CLOSED: "closed",
+  PENDING: "pending"
+};
+
+const status1 = Symbol("status");
+
+const order = {
+  [status1]: statuses.OPEN,
+};
+
+console.log(order[status1]); // "open"
+console.log(Object.keys(statuses)); 
+console.log(Object.getOwnPropertyNames(statuses)); 
+console.log(Object.getOwnPropertySymbols(statuses)); 
+
+//undefined
+
+let counter =0;
+console.log(counter);
+
+//as an object 
+let counter1 = {
+   current: 0
+};
+
+const max = counter1.max ?? 100;
+
+if('max' in counter1) {
+    console.log(counter1.max);
+}else {
+    console.log("max not found, default =", max);
+}
