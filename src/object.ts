@@ -34,13 +34,15 @@ type User1 = {
   address?: { city: string; zip: number };
 };
 
-const user1: User = {
+const user1: User1 = {
   id: 101,
   name: "Srushti Amin",
   email: "srushti@example.com",
   address: { city: "Ahmedabad", zip: 380015 },
 };
+
 console.log(user1);
+
 
 //when we have to give value afterwards 
 let scores: { [studentName: string]: number } = {};
