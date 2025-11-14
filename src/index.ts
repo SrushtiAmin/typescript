@@ -16,9 +16,9 @@ function greet(name: string) {
 
 console.log(greet("TypeScript"));
 //string
-let firstname :string ="Srushti";
+let firstname: string = "Srushti";
 let title: string = "Web Developer";
-let intro: string =`Hi! I'm ${firstname} and I'm ${title}`;
+let intro: string = `Hi! I'm ${firstname} and I'm ${title}`;
 
 console.log(firstname);
 console.log(title);
@@ -38,11 +38,11 @@ const hasError: boolean = false;
 const completed: boolean = true;
 
 // AND operator
-let result1 = completed && hasError; 
+let result1 = completed && hasError;
 console.log(result1); // false
 
 // OR operator
-let result2 = completed || hasError; 
+let result2 = completed || hasError;
 console.log(result2); // true
 
 // document.addEventListener('click', function (event) {
@@ -62,13 +62,13 @@ const order = {
 };
 
 console.log(order[status1]); // "open"
-console.log(Object.keys(statuses)); 
-console.log(Object.getOwnPropertyNames(statuses)); 
-console.log(Object.getOwnPropertySymbols(statuses)); 
+console.log(Object.keys(statuses));
+console.log(Object.getOwnPropertyNames(statuses));
+console.log(Object.getOwnPropertySymbols(statuses));
 
 //undefined
 
-let counter =0;
+let counter = 0;
 console.log(counter);
 
 //as an object 
@@ -93,7 +93,7 @@ console.log(name1);
 //any
 let hero;
 
-function getHero(){
+function getHero() {
   return "thor"
 }
 hero = getHero()
@@ -120,9 +120,9 @@ console.log(add(2, 3));
 
 //map
 
-const heros = ["thor","ironman","hulk"];
+const heros = ["thor", "ironman", "hulk"];
 
-heros.map((hero):string =>{
+heros.map((hero): string => {
   return `hero is ${hero}`
 })
 
@@ -175,3 +175,59 @@ console.log(user[ID]); // 101
 
 // console.log(user.name); // "Srushti"
 // console.log(user[ID]);  // 101
+//any when the type is not known , it take value 
+let value: any = 10;
+value = "hello";
+value = true;
+
+// value.trim();     // allowed
+// value.toFixed();  // allowed
+console.log(value);//will print true as it take the latest value given
+
+//value can be anything ,but safer than any - unknown 
+let data: unknown = 10;
+data = "hello";
+
+// console.log(data.trim());  // error
+
+if (typeof data === "string") {
+  console.log(data.trim());  // now allowed
+}
+//compatibility - if one type can be assigned to another or not 
+type A = { name: string };
+type B = { name: string; age: number };
+
+let a: A = { name: "Srushti" };
+let b: B = { name: "Amin", age: 21 };
+
+a = b;  // allowed (b has everything a needs)
+// b = a;  // error (a is missing age)
+console.log(a);
+
+//structural typing
+// if the structure is lookalike then only the assigning is allowed 
+interface User { name: string; }
+
+let obj = { name: "Srushti", city: "Ahmedabad" };
+
+let users: User = obj;  // allowed because structure matches
+console.log(users);
+
+//assignability rule 
+
+//extra properties are allowed when we assign it to the narrower types 
+type Small = { name: string };
+type Big = { name: string; age: number };
+
+let big: Big = { name: "ME", age: 91 };
+let small: Small;
+
+small = big; // allowed
+console.log(big);
+
+//missing types are not allowed 
+// let old: { name: string } = { name: "Srushti" };
+// let new: { name: string; age: number };
+
+// new = old; //  Error: missing age
+// console.log(new)

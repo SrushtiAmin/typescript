@@ -57,3 +57,4 @@ let upper = students.map(name => name.toUpperCase());
 console.log(students);
 console.log(selected);
 console.log(upper);
+
