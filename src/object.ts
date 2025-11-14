@@ -14,11 +14,15 @@ console.log(p1);
 console.log(p2);
 
 type User = {
-  readonly id: number;
+  id: number;
   name: string;
-};
+}
 
-const user: User = { id: 1, name: "Srushti" };
+//"3-3-3-3"
+type T_My_Num=`${string}-${string}-${string}-${string}`;
+const my_num:T_My_Num="3-3-3-3"
+
+const user = { id: 1, name: "Srushti" } as User;
 user.name = "Amin"; //  OK
 // user.id = 2;  Error: Cannot assign to 'id' because it is a read-only property
 console.log(user);
