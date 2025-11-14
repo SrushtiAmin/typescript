@@ -13,7 +13,12 @@
     "declarationMap": true,
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
-    "noImplicitAny": true
+    "noImplicitAny": true,
+
+     "baseUrl": "./src",
+    "paths": {
+      "@utils/*": ["utils/*"]
+    }
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]

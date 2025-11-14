@@ -22,7 +22,7 @@ const user: User = { id: 1, name: "Srushti" };
 user.name = "Amin"; //  OK
 // user.id = 2;  Error: Cannot assign to 'id' because it is a read-only property
 console.log(user);
-//storing data using object key vaalue pair 
+//storing data using object key value pair 
 type User1 = {
   id: number;
   name: string;
@@ -36,6 +36,11 @@ const user1: User = {
   email: "srushti@example.com",
   address: { city: "Ahmedabad", zip: 380015 },
 };
-
 console.log(user1);
+
+//when we have to give value afterwards 
+let scores: { [studentName: string]: number } = {};
+
+console.log(scores["Amit"] = 90);
+console.log(scores["Srushti"] = 95);
 export{}

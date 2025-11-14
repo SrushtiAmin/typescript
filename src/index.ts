@@ -4,6 +4,12 @@ require('module-alias/register');
 // global.document = window.document;
 
 //small function
+//path aliases
+import { addNum, mulNum } from "@utils/math";
+
+console.log("Addition:", addNum(5, 7));
+console.log("Multiplication:", mulNum(3, 4));
+
 function greet(name: string) {
   return `Hello, ${name}!`;
 }
@@ -154,18 +160,18 @@ let user = {
   name: "Srushti"
 };
 console.log(user[ID]); // 101
-//comaprison 
-const s1 = Symbol("id");
-const s2 = Symbol("id");
+//comparison 
+// const s1 = Symbol("id");
+// const s2 = Symbol("id");
 
-console.log(s1 === s2); // false
+// console.log(s1 === s2); // false
 //symbol as an object 
-const ID1 = Symbol("id");
+// const ID1 = Symbol("id");
 
-const user1 = {
-  name: "Srushti",
-  [ID1]: 101
-};
+// const user1 = {
+//   name: "Srushti",
+//   [ID1]: 101
+// };
 
-console.log(user.name); // "Srushti"
-console.log(user[ID]);  // 101
+// console.log(user.name); // "Srushti"
+// console.log(user[ID]);  // 101
