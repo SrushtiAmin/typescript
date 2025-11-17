@@ -57,4 +57,133 @@ let upper = students.map(name => name.toUpperCase());
 console.log(students);
 console.log(selected);
 console.log(upper);
+//union - can use more than one datatype together 
+let score: string | number;
 
+score = 44;
+score = "55";
+
+type User_info = { name_Info: string };
+type Admin = { name: string; role: string };
+
+let person1: User_info | Admin;
+
+person1 = { name_Info: "Srushti" };            // OK
+person1 = { name: "Amin", role: "admin" };     // OK
+   
+
+
+function processValue(v: number | string) {
+  if (typeof v === "number") {
+    console.log(v.toFixed(2)); // Works
+  } else {
+    console.log(v.toUpperCase()); // Works
+  }
+}
+let items: (number | string)[];
+items = [1, "hello", 3, "world"];
+console.log(items);
+
+//intersect
+
+type HasId = { id: number };
+type Timestamped = { createdAt: Date };
+
+type Entity = HasId & Timestamped; // must have both
+
+const e: Entity = { id: 1, createdAt: new Date() };
+console.log(e);
+
+//type aliases give custom name to datatype 
+type User = {
+  name: string;
+  age: number;
+};
+
+let u1: User = { name: "Amin", age: 21 };
+console.log(u1);
+
+//keyof-to access all valid keys 
+//takes and object and return it key types 
+//list of keys of types
+//cant access keyof directly or print it ty
+const user1 = {
+  name: "Amin",
+  age: 21
+} as const;
+
+type UserKeys = keyof typeof user1;
+
+console.log(Object.keys(user1));
+//typeof - it works on value/variables
+type AgeType = typeof age;
+let age = 21;
+
+console.log(typeof age);
+let name = "Srushti";
+
+console.log(typeof name);
+let isStudent = true;
+
+console.log(typeof isStudent);
+let user = {
+  name: "Amin",
+  age: 21
+};
+
+console.log(typeof user);
+//index signature - when u don't know exact property name in advance
+//allow to have dynamic and unknown types
+
+type Scores = {
+  [key: string]: number;
+};
+//example
+const marks: Scores = {
+  math: 95,
+  english: 88,
+  science: 90,
+};
+//key name does not matter but it know types of values given to keys 
+
+
+//indexed types 
+//when you extract the types of a specific key from a type 
+type User2 = {
+  name: string;
+  age: number;
+};
+
+const user2: User2 = {
+  name: "Amin",
+  age: 21,
+};
+
+console.log(user2["name"]); // Prints: Amin
+console.log(user2["age"]);  // Prints: 21
+
+function printValue<T, K extends keyof T>(obj: T, key: K) {
+  console.log(obj[key]);
+}
+
+printValue(user2, "name");  // Amin
+printValue(user2, "age");   // 21
+
+//both 
+//convert real variable to types and extract all keys of that types
+
+const user3 = {
+  name: "Amin",
+  age: 21
+};
+
+// typeof → get type of user
+type UserType = typeof user3;
+
+// keyof → get keys of user
+type User_Keys = keyof UserType;   // "name" | "age"
+
+// Lookup type → get type of specific property
+type NameType = UserType["name"]; // string
+
+export{}
