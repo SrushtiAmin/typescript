@@ -41,6 +41,8 @@ class Car {
 
 const c1 = new Car("Toyota");
 c1.drive();  // Toyota is driving
+
+
 //instances of 
 
 class Circle {
@@ -74,11 +76,3 @@ function printArea(shape: Circle | Square) {
 printArea(new Circle(5));
 printArea(new Square(4));
 
-//function parameter and return 
-
-function calculateTotal(price: number, quantity: number): number {
-  const total = price * quantity;
-  return total;
-}
-
-let result = calculateTotal(100, 2);
