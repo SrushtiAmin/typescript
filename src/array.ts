@@ -186,4 +186,17 @@ type User_Keys = keyof UserType;   // "name" | "age"
 // Lookup type → get type of specific property
 type NameType = UserType["name"]; // string
 
+
+//type guards- check type at runtime 
+function printValue1(x: number | string) {
+  if (typeof x === "string") {
+    console.log(x.toUpperCase());   // string method
+  } else {
+    console.log(x.toFixed(2));       // number method
+  }
+}
+
+printValue1("hello");
+printValue1(10);
+
 export{}
