@@ -48,4 +48,52 @@ console.log(joinNames("Srushti", "Amin", "VGEC"));
 
 //higher order function 
 
+function operateOnNumbers(numbers: number[], operation: (num: number) => number): number[] {
+  return numbers.map(operation);
+}
+
+const double = (n: number) => n * 2;
+const squared = (n: number) => n * n;
+
+const myNumbers = [1, 2, 3, 4];
+
+const doubledNumbers = operateOnNumbers(myNumbers, double); 
+const squaredNumbers = operateOnNumbers(myNumbers, squared); 
+//this means considering the particular object to be called 
+
+const student_info = {
+  name: "Srushti",
+  showName() {
+    console.log(this.name);
+  }
+};
+
+student_info.showName(); // "Srushti"
+//with arrow function 
+
+// const info = {
+//   name: "Srushti",
+//   showName: () => {
+//     console.log(this.name);
+//   }
+// }
+
+// info.showName();  // undefined
+//contextual this 
+let person_info = {
+  name: "Amin",
+  greet() {
+    console.log("Hi " + this.name);
+  }
+}
+
+//interface+type aliases
+
+interface User {
+  id: number;
+  name: string;
+  email?: string; // optional property
+  readonly createdAt: Date;
+  [key: string]: any; // index signature (optional)
+}
 
