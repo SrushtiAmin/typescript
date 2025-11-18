@@ -370,4 +370,25 @@ let myCircle2 = new Circle2(10);
 
 // Accessing instance method
 console.log(myCircle2.getArea()); // Output: 314.159
+
+//implementing interface means class agrees to follow particular structure 
+interface People{
+  name:string;
+  age:number;
+  speak():void;
+}
+class Teacher implements People{
+  name:string;
+  age:number;
+
+  constructor(name:string,age:number){
+    this.name=name;
+    this.age=age;
+  }
+  speak():void{
+    console.log(`Hi, I am ${this.name} and I am ${this.age} years old`)
+  }
+}
+const t = new Teacher("Srushti", 21);
+t.speak(); 
 export{}

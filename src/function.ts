@@ -96,4 +96,58 @@ interface User {
   readonly createdAt: Date;
   [key: string]: any; // index signature (optional)
 }
+//generics function and classes 
+//generics is to create reusable function and classes that can work with any types while keeping type safety 
+//placeholder for types
+//T is placeholder that take type according to the value given to it 
+function getFirst<T>(items: T[]): T | undefined {
+    return items[0];
+}
 
+
+console.log(getFirst([1, 2, 3]));         // 1
+console.log(getFirst(["a", "b", "c"]));   // a
+//when we want to sue any type of array to be written not specifically bind to any one datatype 
+function swap<T>(a: T, b: T): [T, T] {
+    return [b, a];
+}
+
+console.log(swap(1, 2));         // [2, 1]
+console.log(swap("hi", "bye"));  // ["bye", "hi"]
+
+//class
+class StorageBox<T> {
+    private item: T;
+
+    constructor(item: T) {
+        this.item = item;
+    }
+
+    getItem(): T {
+        return this.item;
+    }
+}
+
+const numberBox = new StorageBox(100);
+console.log(numberBox.getItem()); // 100
+
+const stringBox = new StorageBox("Srushti");
+console.log(stringBox.getItem()); // "Srushti"
+class Queue<T> {
+    private items: T[] = [];
+
+    enqueue(item: T) {
+        this.items.push(item);
+    }
+
+    dequeue(): T | undefined {
+        return this.items.shift();
+    }
+}
+
+const queue = new Queue<string>();
+queue.enqueue("Srushti");
+queue.enqueue("Amin");
+console.log(queue.dequeue()); // Srushti
+
+export{}
