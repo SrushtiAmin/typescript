@@ -127,4 +127,42 @@ console.log(admin);
 console.log(admin.id);
 console.log(admin.name);
 console.log(admin.permissions);
+
+///hybrid type
+interface Counter {
+  (): void;        // callable function
+  count: number;   // property
+}
+
+function createCounter(): Counter {
+  const c = function () {
+    c.count++;
+  } as Counter;
+
+  c.count = 0;
+
+  return c;
+}
+
+const counter = createCounter();
+
+counter();  
+counter();
+console.log(counter.count); // 2
+
+
+//declaration merges
+interface User {
+  id: number;
+}
+
+interface User {
+  name: string;
+}
+
+const person: User = {
+  id: 1,
+  name: "Srushti"
+};
+console.log(person);
 export{}
