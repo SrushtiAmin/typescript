@@ -150,4 +150,13 @@ queue.enqueue("Srushti");
 queue.enqueue("Amin");
 console.log(queue.dequeue()); // Srushti
 
+//extends - allow only particular type to get executed and restrict other 
+function printName<T extends { name: string }>(obj: T) {
+    console.log(obj.name);
+}
+
+printName({ name: "ME", age: 21 });   // works
+//printName({ age: 21 });   // ERROR, no name property
+
+
 export{}
