@@ -184,5 +184,190 @@ console.log(b.id); // ✔ allowed (reading)
 
 // u.id = 10;  ERROR: Cannot assign to readonly property
 b.name = "Amin"; // allowed
-//getter setter 
 
+
+//getter setter 
+class StudentProfile {
+  private _studentScore!: number;
+  private _studentName!: string;
+
+  constructor(nameInput: string, scoreInput: number) {
+    this._studentName = nameInput;
+    this.studentScore = scoreInput; // setter used
+  }
+
+  get studentName(): string {
+    return this._studentName;
+  }
+
+  set studentName(newName: string) {
+    this._studentName = newName.trim();
+  }
+
+  get studentScore(): number {
+    return this._studentScore;
+  }
+
+  set studentScore(newScore: number) {
+    if (newScore < 0 || newScore > 100) {
+      throw new Error("Score must be between 0 and 100");
+    }
+    this._studentScore = newScore;
+  }
+}
+
+const profileA = new StudentProfile("  Riya  ", 88);
+
+console.log(profileA.studentName);  
+console.log(profileA.studentScore);
+
+//abstract
+//can not created as an object 
+//can be inherited by child class only 
+abstract class Animal {
+  abstract makeSound(): void; // child MUST implement
+
+  move() {
+    console.log("Animal is moving");
+  }
+}
+
+class Dog extends Animal {
+  makeSound() {
+    console.log("Dog barks: Woof!");
+  }
+}
+
+const d = new Dog();
+d.makeSound(); // Dog barks: Woof!
+d.move();      // Animal is moving
+
+//with constructor and fields 
+abstract class Person1 {
+  constructor(protected name: string) {} // protected so children can use it
+
+  abstract describe(): void;
+
+  greet() {
+    console.log("Hello, my name is " + this.name);
+  }
+}
+
+class Student1 extends Person1 {
+  constructor(name: string, private roll: number) {
+    super(name);
+  }
+
+  describe() {
+    console.log(`I am ${this.name}, roll no ${this.roll}`);
+  }
+}
+
+const s1 = new Student1("Riya", 5);
+s1.greet();     // Hello, my name is Riya
+s1.describe();  // I am Riya, roll no 5
+
+//inheritance
+//allow new class to inherit property from the existing one and additionally add it own properties also 
+//extend keyword is used to establish inheritance 
+class Person2 {
+  constructor(public name: string) {}
+
+  greet() {
+    console.log("Hello, I am " + this.name);
+  }
+}
+
+class Student2 extends Person2 {
+  constructor(name: string, public roll: number) {
+    super(name); // call parent constructor
+  }
+
+  study() {
+    console.log(this.name + " is studying.");
+  }
+}
+
+const s2 = new Student2("Riya", 5);
+s2.greet();   // Inherited from Person
+s2.study();   // Own method
+//polymorphism
+    class Animals {
+        makeSound(): string {
+            return "Generic animal sound";
+        }
+    }
+
+    class Dogs extends Animals {
+        makeSound(): string {
+            return "Woof!";
+        }
+    }
+
+    class Cats extends Animals {
+        makeSound(): string {
+            return "Meow!";
+        }
+    }
+
+    const myPet: Animals = new Dogs(); // myPet is typed as Animal, but holds a Dog instance
+    console.log(myPet.makeSound()); // Output: Woof!
+
+    const my_Pet: Animals = new Cats(); // myPet is typed as Animal, but holds a Dog instance
+    console.log(my_Pet.makeSound()); // Output: Woof!
+
+    //overloading
+    class Calculator {
+    add(a: number, b: number): number;
+    add(a: string, b: string): string;
+    add(a: any, b: any): any {
+        if (typeof a === 'number' && typeof b === 'number') {
+            return a + b;
+        }
+        if (typeof a === 'string' && typeof b === 'string') {
+            return a + b;
+        }
+        throw new Error("Invalid arguments");
+    }
+}
+
+const calc = new Calculator();
+console.log(calc.add(5, 3));      // Output: 8
+console.log(calc.add("Hello, ", "World!")); // Output: Hello, World!
+
+//static member 
+//access by classname only not object 
+class Circle2 {
+    // Static property (constant)
+    static readonly PI: number = 3.14159;
+
+    // Instance property
+    radius: number;
+
+    constructor(radius: number) {
+        this.radius = radius;
+    }
+
+    // Instance method
+    getArea(): number {
+        return Circle2.PI * this.radius * this.radius;
+    }
+
+    // Static method
+    static calculateCircumference(radius: number): number {
+        return 2 * Circle2.PI * radius;
+    }
+}
+
+// Accessing static property
+console.log(Circle2.PI); // Output: 3.14159
+
+// Calling static method
+console.log(Circle2.calculateCircumference(5)); // Output: 31.4159
+
+// Creating an instance
+let myCircle2 = new Circle2(10);
+
+// Accessing instance method
+console.log(myCircle2.getArea()); // Output: 314.159
+export{}
