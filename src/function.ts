@@ -216,5 +216,167 @@ console.log(updateField(users, "age", 22));        // valueType inferred as numb
 // Error: "roll" is not a valid key
 // updateField(user, "roll", 10);
 
+//utility types
+//partial
+
+interface UserProfile {
+  name: string;
+  age: number;
+  city: string;
+}
+
+function updateProfile(user: UserProfile, updates: Partial<UserProfile>) {
+  return { ...user, ...updates };
+}
+
+const user1 = {
+  name: "Srushti",
+  age: 21,
+  city: "Ahmedabad"
+};
+
+const updatedUser = updateProfile(user1, { city: "Mumbai" });
+
+console.log("Original:", user1);
+console.log("Updated:", updatedUser);
+
+interface Props {
+  a?: number;
+  b?: string;
+}
+
+const obj: Props = { a: 5 };
+console.log(obj);
+
+//const obj2: Required<Props> = { a: 5 };
+
+//readonly
+
+interface Todo {
+  title: string;
+}
+
+// const todos: Readonly<Todo> = {
+//   title: "Delete inactive users",
+// };
+
+//todos.title = "Hello";
+
+//record <keys,type>
+type CatName = "miffy" | "boris" | "mordred";
+
+interface CatInfo {
+  age: number;
+  breed: string;
+}
+
+const cat_info: Record<CatName, CatInfo> = {
+  miffy: { age: 10, breed: "Persian" },
+  boris: { age: 5, breed: "Maine Coon" },
+  mordred: { age: 16, breed: "British Shorthair" },
+};
+
+console.log(cat_info.boris);
+
+//Pick<type,keys>
+interface Todo {
+  title: string;
+  description: string;
+  completed: boolean;
+}
+
+type TodoPreview = Pick<Todo, "title" | "completed">;
+
+const todo_info: TodoPreview = {
+  title: "Clean room",
+  completed: false,
+};
+
+console.log(todo_info);
+//omit<type,keys>
+interface UserBasic {
+  name: string;
+  age: number;
+  email: string;
+  password: string;
+}
+
+type SafeUser = Omit<UserBasic, "password">;
+
+const safe: SafeUser = {
+  name: "Amin",
+  age: 25,
+  email: "amin@example.com"
+};
+
+console.log(safe);
+//exclude<type,key>
+type Status = "pending" | "approved" | "rejected";
+
+type ActiveStatus = Exclude<Status, "rejected">;
+
+const s: ActiveStatus = "approved";
+// const s2: ActiveStatus = "rejected"; //  Error
+
+console.log(s);
+//extract<type,keys>
+type A = "a" | "b" | "c";
+type B = "b" | "x";
+
+type Common = Extract<A, B>;
+
+const c: Common = "b";
+
+console.log(c);
+//non-nullable
+type MaybeString = string | null | undefined;
+
+type SafeString = NonNullable<MaybeString>;
+
+const s1: SafeString = "Hello";
+// const s2: SafeString = null; //  Error
+
+console.log(s1);
+
+//parameter<t>
+//construct a tuple type from the types used in the parameter of a function type 
+function login(username: string, password: string) {
+  return true;
+}
+
+type LoginParams = Parameters<typeof login>;
+
+const params: LoginParams = ["srushti", "12345"];
+
+console.log(params);
+
+//return type
+//get function return type 
+function calculate(a: number, b: number) {
+  return a + b;
+}
+
+type Result = ReturnType<typeof calculate>;
+
+const output: Result = 50;
+
+console.log(output);
+
+//instance type
+//get class instance
+
+class Person {
+  constructor(public name: string) { }
+}
+
+type PersonInstance = InstanceType<typeof Person>;
+
+const p: PersonInstance = new Person("Srushti");
+
+console.log(p);
+
+//awaited
+//just like async await in javascript to handle promises 
 
 export{}
+
