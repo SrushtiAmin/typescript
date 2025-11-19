@@ -377,6 +377,21 @@ console.log(p);
 
 //awaited
 //just like async await in javascript to handle promises 
+async function fetchUser() {
+  const response = await fetch("https://example.com/user");
+  return response.json();
+}
+
+// Get the final resolved type
+type UserType = Awaited<ReturnType<typeof fetchUser>>;
+
+// Use the type
+const userBasic: UserType = {
+  name: "Srushti",
+  age: 21
+};
+
+console.log(userBasic);
 
 export{}
 
