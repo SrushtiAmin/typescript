@@ -158,5 +158,63 @@ function printName<T extends { name: string }>(obj: T) {
 printName({ name: "ME", age: 21 });   // works
 //printName({ age: 21 });   // ERROR, no name property
 
+//default generics
+//when no type is passed the generics will take this default values 
+function wrap<T = number>(x: T): T {
+  return x;
+}
+
+// No generic provided → uses default "number"
+console.log(wrap(10));       // number
+
+// Generic provided → overrides default
+console.log(wrap<string>("Hi"));   // string
+
+//keyof generics 
+//give all the keys of the object
+function printKey<T, K extends keyof T>(obj: T, key: K) {
+  console.log(obj[key]);
+}
+
+const user = { name: "Srushti", age: 21 };
+
+printKey(user, "name");  // OK
+printKey(user, "age");   // OK
+//printKey(user, "roll");  // ERROR (not a key)
+
+//generic inference
+//guess the type of automatically
+
+function wrapping<T>(value: T): T {
+  return value;
+}
+
+console.log(typeof(wrapping(10)));        // T = number
+console.log(typeof(wrapping("hello")));   // T = string
+// 1) Default generic type → valueType = string if not provided
+function updateField<T, K extends keyof T, valueType = T[K]>(
+  obj: T,
+  key: K,
+  value: valueType // 3) Generic inference works here
+):T{
+  obj[key] = value as T[K];
+  return obj;
+}
+
+// Example object
+const users = {
+  name: "Srushti",
+  age: 21
+};
+
+// USING THE FUNCTION
+
+// 2) keyof with generics only "name" and "age" allowed
+console.log(updateField(users, "name", "Amin"));   // valueType inferred as string
+console.log(updateField(users, "age", 22));        // valueType inferred as number
+
+// Error: "roll" is not a valid key
+// updateField(user, "roll", 10);
+
 
 export{}
