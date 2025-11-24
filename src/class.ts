@@ -162,7 +162,7 @@ class Admin extends UserBlock {
 }
 
 const a = new Admin("Srushti", "12345", "admin");
-
+a.showUser()
 console.log(a.username); 
 
 a.showUser();  
@@ -226,6 +226,8 @@ console.log(profileA.studentScore);
 //can be inherited by child class only 
 abstract class Animal {
   abstract makeSound(): void; // child MUST implement
+
+
 
   move() {
     console.log("Animal is moving");

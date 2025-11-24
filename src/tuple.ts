@@ -20,7 +20,7 @@ console.log(student);
 
 
 //optional 
-let employee: [string, number, string?];
+let employee  : [string, number, string?];
 
 employee = ["Amin", 24];
 employee = ["Amin", 24, "Developer"];
@@ -45,3 +45,18 @@ let u: [string, number] = ["Amin", 23];
 
 logUser(u);
 //throw error if we enter number first and then string
+
+
+interface User{
+  name: string,
+  birthdate: string,
+  
+}
+
+interface User {
+  name: string,
+
+}
+
+
+
