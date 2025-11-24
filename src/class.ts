@@ -89,8 +89,8 @@ class Person {
 }
 
 const p1 = new Person("Srushti", 21);
-console.log(p1.name); 
-console.log(p1.age);  
+console.log(p1.name);
+console.log(p1.age);
 
 //public modifier  - accessible everywhere 
 class Student {
@@ -137,12 +137,12 @@ class Manager extends Employee {
 }
 
 const m = new Manager(80000);
-m.showSalary(); 
+m.showSalary();
 // console.log(m.salary); // Error (protected)
 class UserBlock {
-  public username: string;      
-  private password: string;     
-  protected role: string;       
+  public username: string;
+  private password: string;
+  protected role: string;
 
   constructor(username: string, password: string, role: string) {
     this.username = username;
@@ -157,15 +157,15 @@ class UserBlock {
 
 class Admin extends UserBlock {
   showRole() {
-    console.log(this.role);  
+    console.log(this.role);
   }
 }
 
 const a = new Admin("Srushti", "12345", "admin");
 a.showUser()
-console.log(a.username); 
+console.log(a.username);
 
-a.showUser();  
+a.showUser();
 a.showRole();
 //readonly
 class User_block {
@@ -218,7 +218,7 @@ class StudentProfile {
 
 const profileA = new StudentProfile("  Riya  ", 88);
 
-console.log(profileA.studentName);  
+console.log(profileA.studentName);
 console.log(profileA.studentScore);
 
 //abstract
@@ -246,7 +246,7 @@ d.move();      // Animal is moving
 
 //with constructor and fields 
 abstract class Person1 {
-  constructor(protected name: string) {} // protected so children can use it
+  constructor(protected name: string) { } // protected so children can use it
 
   abstract describe(): void;
 
@@ -273,7 +273,7 @@ s1.describe();  // I am Riya, roll no 5
 //allow new class to inherit property from the existing one and additionally add it own properties also 
 //extend keyword is used to establish inheritance 
 class Person2 {
-  constructor(public name: string) {}
+  constructor(public name: string) { }
 
   greet() {
     console.log("Hello, I am " + this.name);
@@ -294,43 +294,43 @@ const s2 = new Student2("Riya", 5);
 s2.greet();   // Inherited from Person
 s2.study();   // Own method
 //polymorphism
-    class Animals {
-        makeSound(): string {
-            return "Generic animal sound";
-        }
+class Animals {
+  makeSound(): string {
+    return "Generic animal sound";
+  }
+}
+
+class Dogs extends Animals {
+  makeSound(): string {
+    return "Woof!";
+  }
+}
+
+class Cats extends Animals {
+  makeSound(): string {
+    return "Meow!";
+  }
+}
+
+const myPet: Animals = new Dogs(); // myPet is typed as Animal, but holds a Dog instance
+console.log(myPet.makeSound()); // Output: Woof!
+
+const my_Pet: Animals = new Cats(); // myPet is typed as Animal, but holds a Dog instance
+console.log(my_Pet.makeSound()); // Output: Woof!
+
+//overloading
+class Calculator {
+  add(a: number, b: number): number;
+  add(a: string, b: string): string;
+  add(a: any, b: any): any {
+    if (typeof a === 'number' && typeof b === 'number') {
+      return a + b;
     }
-
-    class Dogs extends Animals {
-        makeSound(): string {
-            return "Woof!";
-        }
+    if (typeof a === 'string' && typeof b === 'string') {
+      return a + b;
     }
-
-    class Cats extends Animals {
-        makeSound(): string {
-            return "Meow!";
-        }
-    }
-
-    const myPet: Animals = new Dogs(); // myPet is typed as Animal, but holds a Dog instance
-    console.log(myPet.makeSound()); // Output: Woof!
-
-    const my_Pet: Animals = new Cats(); // myPet is typed as Animal, but holds a Dog instance
-    console.log(my_Pet.makeSound()); // Output: Woof!
-
-    //overloading
-    class Calculator {
-    add(a: number, b: number): number;
-    add(a: string, b: string): string;
-    add(a: any, b: any): any {
-        if (typeof a === 'number' && typeof b === 'number') {
-            return a + b;
-        }
-        if (typeof a === 'string' && typeof b === 'string') {
-            return a + b;
-        }
-        throw new Error("Invalid arguments");
-    }
+    throw new Error("Invalid arguments");
+  }
 }
 
 const calc = new Calculator();
@@ -340,25 +340,25 @@ console.log(calc.add("Hello, ", "World!")); // Output: Hello, World!
 //static member 
 //access by classname only not object 
 class Circle2 {
-    // Static property (constant)
-    static readonly PI: number = 3.14159;
+  // Static property (constant)
+  static readonly PI: number = 3.14159;
 
-    // Instance property
-    radius: number;
+  // Instance property
+  radius: number;
 
-    constructor(radius: number) {
-        this.radius = radius;
-    }
+  constructor(radius: number) {
+    this.radius = radius;
+  }
 
-    // Instance method
-    getArea(): number {
-        return Circle2.PI * this.radius * this.radius;
-    }
+  // Instance method
+  getArea(): number {
+    return Circle2.PI * this.radius * this.radius;
+  }
 
-    // Static method
-    static calculateCircumference(radius: number): number {
-        return 2 * Circle2.PI * radius;
-    }
+  // Static method
+  static calculateCircumference(radius: number): number {
+    return 2 * Circle2.PI * radius;
+  }
 }
 
 // Accessing static property
@@ -374,23 +374,49 @@ let myCircle2 = new Circle2(10);
 console.log(myCircle2.getArea()); // Output: 314.159
 
 //implementing interface means class agrees to follow particular structure 
-interface People{
-  name:string;
-  age:number;
-  speak():void;
+interface People {
+  name: string;
+  age: number;
+  speak(): void;
 }
-class Teacher implements People{
-  name:string;
-  age:number;
+class Teacher implements People {
+  name: string;
+  age: number;
 
-  constructor(name:string,age:number){
-    this.name=name;
-    this.age=age;
+  constructor(name: string, age: number) {
+    this.name = name;
+    this.age = age;
   }
-  speak():void{
+  speak(): void {
     console.log(`Hi, I am ${this.name} and I am ${this.age} years old`)
   }
 }
 const t = new Teacher("Srushti", 21);
-t.speak(); 
-export{}
+t.speak();
+
+//abstract example
+abstract class EmployeeAbstract {
+  abstract calculateSalary(): number;  // MUST be implemented by children
+
+  greet() {
+    console.log("Welcome to the company!");
+  }
+}
+
+class DeveloperAbstract extends EmployeeAbstract {
+  calculateSalary() {
+    return 50000;
+  }
+}
+
+class ManagerAbstract extends EmployeeAbstract {
+  calculateSalary() {
+    return 90000;
+  }
+}
+
+const dev = new DeveloperAbstract()
+console.log(dev.calculateSalary());
+dev.greet();
+
+export { }
