@@ -450,30 +450,51 @@ class Fan {
 }
 
 // Usage
-const fan = new Fan();
+// const fan = new Fan();
 
-console.log(fan.speed); // 1  (getter)
+// console.log(fan.speed); // 1  (getter)
 
-fan.speed = 3;          // setter  works
-console.log(fan.speed); // 3
+// fan.speed = 3;          // setter  works
+// console.log(fan.speed); // 3
 
-fan.speed = 10;         // Error: Speed must be between 1 and 5
+// fan.speed = 10;         // Error: Speed must be between 1 and 5
 
-//static member 
-class user {
-  static totalusers = 0;   // shared by the class (static)
+// //static member 
+// class user {
+//   static totalusers = 0;   // shared by the class (static)
 
-  constructor(public name: string) {
-    user.totalusers++;     // increment when a new user is created
-  }
+//   constructor(public name: string) {
+//     user.totalusers++;     // increment when a new user is created
+//   }
 
-  showName() {
-    console.log(`User name is ${this.name}`);
-  }
+//   showName() {
+//     console.log(`User name is ${this.name}`);
+//   }
   
+// }
+
+//generics - placeholder of types
+//function that work for any type
+// will store whatever get assigned
+class Bag<T> {
+  items: T[] = [];
+
+  add(item: T) {
+    this.items.push(item);
+  }
 }
 
+const numberBag = new Bag<number>();
+numberBag.add(10);
+numberBag.add(20);
 
+const stringBag = new Bag<string>();
+stringBag.add("apple");
+stringBag.add("banana");
+
+
+console.log(numberBag);
+console.log(stringBag)
 
 
 export {}
