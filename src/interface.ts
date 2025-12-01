@@ -4,6 +4,7 @@ interface Person {
   name: string;
   age: number;
 }
+
 interface Employee extends Person {
   salary: number;
 }

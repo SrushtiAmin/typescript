@@ -419,4 +419,61 @@ const dev = new DeveloperAbstract()
 console.log(dev.calculateSalary());
 dev.greet();
 
-export { }
+interface Book {
+  title: string;
+  author: string;
+  pages: number;
+}
+
+const myBook: Readonly<Book> = {
+  title: "Invisible Cities",
+  author: "Italo Calvino",
+  pages: 165
+};
+
+//getter setter
+class Fan {
+  private _speed: number = 1;   // default speed
+
+  //  Getter read the speed
+  get speed() {
+    return this._speed;
+  }
+
+  //  Setter control how speed is updated
+  set speed(value: number) {
+    if (value < 1 || value > 5) {
+      throw new Error("Speed must be between 1 and 5.");
+    }
+    this._speed = value;
+  }
+}
+
+// Usage
+const fan = new Fan();
+
+console.log(fan.speed); // 1  (getter)
+
+fan.speed = 3;          // setter  works
+console.log(fan.speed); // 3
+
+fan.speed = 10;         // Error: Speed must be between 1 and 5
+
+//static member 
+class user {
+  static totalusers = 0;   // shared by the class (static)
+
+  constructor(public name: string) {
+    user.totalusers++;     // increment when a new user is created
+  }
+
+  showName() {
+    console.log(`User name is ${this.name}`);
+  }
+  
+}
+
+
+
+
+export {}

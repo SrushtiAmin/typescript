@@ -1,7 +1,12 @@
 //function parameter and return 
 
-function calculateTotal(price: number, quantity: number): number {
+function calculateTotal(price = 10, quantity: number) {
   const total = price * quantity;
+  if (total < 10) {
+    return "no found"
+  } else if (total > 100) {
+    return {};
+  }
   return total;
 }
 
@@ -28,7 +33,7 @@ function sayHi() {
 const add = (a: number, b: number): number => {
   return a + b;
 };
-console.log(add(9,10));
+console.log(add(9, 10));
 //default parameters
 //when there is no user given value it will take default one
 function calculatePrice(amount: number, tax: number = 18) {
@@ -52,13 +57,20 @@ function operateOnNumbers(numbers: number[], operation: (num: number) => number)
   return numbers.map(operation);
 }
 
+type UserStatus = 'active' | 'inactive' | 'pending';
+interface User {
+  id: number;
+  name: string;
+}
+
+
 const double = (n: number) => n * 2;
 const squared = (n: number) => n * n;
 
 const myNumbers = [1, 2, 3, 4];
 
-const doubledNumbers = operateOnNumbers(myNumbers, double); 
-const squaredNumbers = operateOnNumbers(myNumbers, squared); 
+const doubledNumbers = operateOnNumbers(myNumbers, double);
+const squaredNumbers = operateOnNumbers(myNumbers, squared);
 //this means considering the particular object to be called 
 
 const student_info = {
@@ -101,7 +113,7 @@ interface User {
 //placeholder for types
 //T is placeholder that take type according to the value given to it 
 function getFirst<T>(items: T[]): T | undefined {
-    return items[0];
+  return items[0];
 }
 
 
@@ -109,7 +121,7 @@ console.log(getFirst([1, 2, 3]));         // 1
 console.log(getFirst(["a", "b", "c"]));   // a
 //when we want to sue any type of array to be written not specifically bind to any one datatype 
 function swap<T>(a: T, b: T): [T, T] {
-    return [b, a];
+  return [b, a];
 }
 
 console.log(swap(1, 2));         // [2, 1]
@@ -117,15 +129,15 @@ console.log(swap("hi", "bye"));  // ["bye", "hi"]
 
 //class
 class StorageBox<T> {
-    private item: T;
+  private item: T;
 
-    constructor(item: T) {
-        this.item = item;
-    }
+  constructor(item: T) {
+    this.item = item;
+  }
 
-    getItem(): T {
-        return this.item;
-    }
+  getItem(): T {
+    return this.item;
+  }
 }
 
 const numberBox = new StorageBox(100);
@@ -134,15 +146,15 @@ console.log(numberBox.getItem()); // 100
 const stringBox = new StorageBox("Srushti");
 console.log(stringBox.getItem()); // "Srushti"
 class Queue<T> {
-    private items: T[] = [];
+  private items: T[] = [];
 
-    enqueue(item: T) {
-        this.items.push(item);
-    }
+  enqueue(item: T) {
+    this.items.push(item);
+  }
 
-    dequeue(): T | undefined {
-        return this.items.shift();
-    }
+  dequeue(): T | undefined {
+    return this.items.shift();
+  }
 }
 
 const queue = new Queue<string>();
@@ -152,7 +164,7 @@ console.log(queue.dequeue()); // Srushti
 
 //extends - allow only particular type to get executed and restrict other 
 function printName<T extends { name: string }>(obj: T) {
-    console.log(obj.name);
+  console.log(obj.name);
 }
 
 printName({ name: "ME", age: 21 });   // works
@@ -189,14 +201,14 @@ function wrapping<T>(value: T): T {
   return value;
 }
 
-console.log(typeof(wrapping(10)));        // T = number
-console.log(typeof(wrapping("hello")));   // T = string
+console.log(typeof (wrapping(10)));        // T = number
+console.log(typeof (wrapping("hello")));   // T = string
 // 1) Default generic type → valueType = string if not provided
 function updateField<T, K extends keyof T, valueType = T[K]>(
   obj: T,
   key: K,
   value: valueType // 3) Generic inference works here
-):T{
+): T {
   obj[key] = value as T[K];
   return obj;
 }
@@ -393,5 +405,5 @@ const userBasic: UserType = {
 
 console.log(userBasic);
 
-export{}
+export { }
 
